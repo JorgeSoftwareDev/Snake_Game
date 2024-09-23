@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 
 // Create the game canvas
 ctx.fillStyle = '#8550eb';
-ctx.strokeStyle = '#000000';
+ctx.strokeStyle = '#FFFFFF';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
@@ -47,12 +47,40 @@ function advanceSnake() {
 	snake.pop();
 }
 
+document.addEventListener('keydown', changeDirection);
+
+function changeDirection(event) {
+	const LEFT = 37,
+		RIGHT = 39,
+		UP = 38,
+		DOWN = 40;
+	const keyPressed = event.keyCode;
+	const goingRight = dx === 10,
+		goingLeft = dx === -10;
+	if (keyPressed === LEFT && !goingRight) {
+		dx = -10;
+		dy = 0;
+	}
+	if (keyPressed === RIGHT && !goingLeft) {
+		dx = 10;
+		dy = 0;
+	}
+	if (keyPressed === UP) {
+		dx = 0;
+		dy = -10;
+	}
+	if (keyPressed === DOWN) {
+		dx = 0;
+		dy = 10;
+	}
+}
 function main() {
 	setTimeout(function onTick() {
 		clearCanvas();
 		advanceSnake();
 		drawSnake();
 		main();
-	}, 100);
+	}, 100); // Calls the main function every 100ms
 }
+
 main();
