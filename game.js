@@ -7,7 +7,8 @@ ctx.fillStyle = '#8550eb';
 ctx.strokeStyle = '#FFFFFF';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
+canvas.style.border = '5px solid #000';
+canvas.style.backgroundColor = '#8550eb';
 // Array for the snake body
 let snake = [
 	{ x: 150, y: 150 },
@@ -47,6 +48,7 @@ function advanceSnake() {
 	snake.pop();
 }
 
+// creating the controls to move the snake
 document.addEventListener('keydown', changeDirection);
 
 function changeDirection(event) {
@@ -74,6 +76,9 @@ function changeDirection(event) {
 		dy = 10;
 	}
 }
+
+// creating food for snake to randomly grow
+
 function main() {
 	setTimeout(function onTick() {
 		clearCanvas();

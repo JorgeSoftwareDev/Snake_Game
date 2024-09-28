@@ -8,20 +8,11 @@
 	</head>
 	<body>
 		<div class="pageContainer">
-			<div class="empty1 white"></div>
-			<div class="lBlue blue"></div>
-			<div class="bHeader blue"></div>
-			<div class="lCorner grey"></div>
-			<div class="tConsole grey"></div>
-			<div class="rCorner grey"></div>
-			<div class="lPillar grey"></div>
-			<h1 class="title yellow">Serpent Frenzy</h1>
-			<div class="rPillar grey"></div>
-			<div class="mConsole grey"></div>
-			<canvas id="gameCanvas" class="gameCanvas" width="350" height="350"></canvas>
-			<div class="bConsole grey"></div>
-			<div class="rBlue blue"></div>
-			<div class="empty2 white"></div>
+			<div id="arcade">
+				<h1 class="title yellow">Serpent Frenzy</h1>
+				<h2 class="scoreContainer gray">Score: <span id="scoreNum">000</span></h2>
+				<canvas id="gameCanvas" class="gameCanvas" width="350px" height="350px"></canvas>
+			</div>
 		</div>
 		<script src="game.js" async></script>
 	</body>
