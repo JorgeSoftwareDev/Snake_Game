@@ -37,6 +37,7 @@
 	border: #000 5px double;
 }
 .scoreContainer {
+	color: #ffffff;
 	padding-top: 30px;
 	height: 100px;
 	text-align: center;

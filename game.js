@@ -1,4 +1,9 @@
 // Variables for the game canvas
+let foodX, foodY;
+let speed = 100;
+let totalScore = 0;
+let count = 0.5;
+let scoreBoard = document.getElementById('scoreNum');
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -9,6 +14,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeRect(0, 0, canvas.width, canvas.height);
 canvas.style.border = '5px solid #000';
 canvas.style.backgroundColor = '#8550eb';
+
 // Array for the snake body
 let snake = [
 	{ x: 150, y: 150 },
@@ -26,6 +32,7 @@ function drawSnakePart(snakePart) {
 	ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
 }
 
+//  Function to go through array of Snakes Body
 function drawSnake() {
 	snake.forEach(drawSnakePart);
 }
@@ -79,13 +86,52 @@ function changeDirection(event) {
 
 // creating food for snake to randomly grow
 
+// creating the food's random position
+function createFood() {
+	foodX = Math.round((Math.random() * (canvas.width - 20)) / 10) * 10;
+	foodY = Math.round((Math.random() * (canvas.height - 20)) / 10) * 10;
+}
+
+// Function to draw the actual food on the Canvas
+function drawFood() {
+	ctx.fillStyle = '#FF0000';
+	ctx.strokeStyle = '#400000';
+	ctx.fillRect(foodX, foodY, 10, 10);
+	ctx.strokeRect(foodX, foodY, 10, 10);
+}
+
+function advanceSnake() {
+	const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+	snake.unshift(head);
+
+	const didEatFood = snake[0].x === foodX && snake[0].y === foodY;
+	if (didEatFood) {
+		createFood();
+		speed -= 10;
+		count += 0.5;
+		totalScore += 100 * count;
+		console.log(speed);
+	} else {
+		snake.pop();
+	}
+}
+
+function scoring() {
+	scoreBoard.textContent = totalScore;
+}
+
+// Main game function
 function main() {
 	setTimeout(function onTick() {
 		clearCanvas();
-		advanceSnake();
 		drawSnake();
+		drawFood();
+		advanceSnake();
+		scoring();
 		main();
-	}, 100); // Calls the main function every 100ms
+	}, speed); // Calls the main function every 100ms
 }
-
 main();
+
+createFood();
+scoring();
