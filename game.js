@@ -3,6 +3,8 @@ let foodX, foodY;
 let speed = 100;
 let totalScore = 0;
 let count = 0.5;
+let bonus = 300;
+let cBonus = 300;
 let scoreBoard = document.getElementById('scoreNum');
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -88,8 +90,8 @@ function changeDirection(event) {
 
 // creating the food's random position
 function createFood() {
-	foodX = Math.round((Math.random() * (canvas.width - 20)) / 10) * 10;
-	foodY = Math.round((Math.random() * (canvas.height - 20)) / 10) * 10;
+	foodX = Math.round((Math.random() * (canvas.width - 30)) / 10) * 10;
+	foodY = Math.round((Math.random() * (canvas.height - 30)) / 10) * 10;
 }
 
 // Function to draw the actual food on the Canvas
@@ -107,13 +109,23 @@ function advanceSnake() {
 	const didEatFood = snake[0].x === foodX && snake[0].y === foodY;
 	if (didEatFood) {
 		createFood();
-		speed -= 10;
-		count += 0.5;
-		totalScore += 100 * count;
-		console.log(speed);
+		update();
 	} else {
 		snake.pop();
 	}
+}
+function updateBonus() {
+	while (cBonus > 0) {
+		cBonus--;
+	}
+	console.log('Total score: ' + cBonus);
+}
+function update() {
+	cBonus = bonus;
+	speed -= 10;
+	count += 0.5;
+	totalScore = totalScore + 100 * count + cBonus;
+	console.log(speed);
 }
 
 function scoring() {
@@ -127,11 +139,12 @@ function main() {
 		drawSnake();
 		drawFood();
 		advanceSnake();
+		updateBonus();
 		scoring();
 		main();
-	}, speed); // Calls the main function every 100ms
+		console.log(cBonus);
+	}, speed); // Calls the main function every x milliseconds
 }
 main();
-
 createFood();
 scoring();
