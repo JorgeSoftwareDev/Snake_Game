@@ -6,6 +6,7 @@ let level = 1;
 let levelScore = 500 * level;
 let bonus = 300;
 let cBonus = bonus * level;
+
 let scoreBoard = document.getElementById('scoreNum');
 let levelBoard = document.getElementById('levelNum');
 const canvas = document.getElementById('gameCanvas');
@@ -62,7 +63,6 @@ function advanceSnake() {
 
 // ## CONTROLS ##
 // creating the controls to move the snake
-document.addEventListener('keydown', changeDirection);
 
 function changeDirection(event) {
 	const LEFT = 37,
@@ -90,8 +90,7 @@ function changeDirection(event) {
 	}
 }
 
-// creating food for snake to randomly grow
-
+// ## FOOD RENDERING & CREATION ##
 // creating the food's random position
 function createFood() {
 	foodX = Math.round((Math.random() * (canvas.width - 20)) / 10) * 10;
@@ -106,6 +105,7 @@ function drawFood() {
 	ctx.strokeRect(foodX, foodY, 10, 10);
 }
 
+// Controlling how the snake grows
 function advanceSnake() {
 	const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 	snake.unshift(head);
@@ -118,32 +118,19 @@ function advanceSnake() {
 		snake.pop();
 	}
 }
+
+// ##  SCORE  ##
 function updateBonus() {
 	if (cBonus > 0) {
 		cBonus--;
 	}
 }
 
-function update() {
-	rapid();
-	console.log('cBonus: ' + cBonus);
-	console.log('score: ' + totalScore);
-	console.log('speed:' + speed);
-	totalScore += levelScore;
-	totalScore += cBonus;
-	level += 1;
-	cBonus = bonus * level;
-	levelScore = 500 * level;
-}
-
-function scoring() {
-	scoreBoard.textContent = totalScore.toLocaleString('en-US');
-	levelBoard.textContent = level;
-}
-
+// ##  GAME FEATURES  ##
+// Controlling speed variable
 function rapid() {
 	switch (true) {
-		case speed > 80:
+		case speed > 70:
 			speed -= 10;
 			break;
 		case speed > 50:
@@ -160,6 +147,21 @@ function rapid() {
 	}
 }
 
+// UPDATING VARIABLES EACH LEVEL
+function update() {
+	rapid();
+	totalScore += levelScore;
+	totalScore += cBonus;
+	level += 1;
+	cBonus = bonus * level;
+	levelScore = 500 * level;
+}
+
+function scoring() {
+	scoreBoard.textContent = totalScore.toLocaleString('en-US');
+	levelBoard.textContent = level;
+}
+
 function didGameEnd() {
 	for (let i = 4; i < snake.length; i++) {
 		const didCollide = snake[i].x === snake[0].x && snake[i].y === snake[0].y;
@@ -168,7 +170,7 @@ function didGameEnd() {
 	const hitLeftWall = snake[0].x < 0;
 }
 
-// Main game function
+// MAIN GAME FUNCTION
 function main() {
 	setTimeout(function onTick() {
 		clearCanvas();
@@ -181,6 +183,10 @@ function main() {
 	}, speed); // Calls the main function every x milliseconds
 }
 
+// ##  EVENT LISTENERS ##
+document.addEventListener('keydown', changeDirection);
+
+// ## FUNCTIONS CALLED ##
 createFood();
 scoring();
 main();
