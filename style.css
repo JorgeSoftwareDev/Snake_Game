@@ -37,16 +37,17 @@
 	border: #000 5px double;
 }
 .scoreContainer {
+	display: flex;
 	color: #ffffff;
 	padding-top: 30px;
 	height: 100px;
 	text-align: center;
-	justify-items: center;
+	justify-content: space-around;
 	border: #000 5px dashed;
 }
 
 .gameCanvas {
 	z-index: 1;
-	height: 450px;
-	width: 450px;
+	height: 500px;
+	width: 500px;
 }
