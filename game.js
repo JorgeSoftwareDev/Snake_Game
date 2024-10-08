@@ -7,6 +7,7 @@ let levelScore = 500 * level;
 let bonus = 300;
 let cBonus = bonus * level;
 
+// ## DOM ID SELECTORS ##
 let scoreBoard = document.getElementById('scoreNum');
 let levelBoard = document.getElementById('levelNum');
 const canvas = document.getElementById('gameCanvas');
@@ -157,21 +158,36 @@ function update() {
 	levelScore = 500 * level;
 }
 
+// Displays/updates Score
 function scoring() {
 	scoreBoard.textContent = totalScore.toLocaleString('en-US');
 	levelBoard.textContent = level;
 }
 
+// Checks to see if game ending event occured
 function didGameEnd() {
 	for (let i = 4; i < snake.length; i++) {
 		const didCollide = snake[i].x === snake[0].x && snake[i].y === snake[0].y;
 		if (didCollide) return true;
 	}
-	const hitLeftWall = snake[0].x < 0;
+	const hitWall = snake[0].x < 0 || snake[0].x >= canvas.width || snake[0].y < 0 || snake[0].y >= canvas.height;
+	return hitWall;
+}
+
+function displayGameOver() {
+	ctx.font = '80px Bold Arial';
+	ctx.fillStyle = 'red';
+	// ctx.textAligh = 'center';
+	ctx.fillText('Game Over', canvas.width / 8, canvas.height / 2);
 }
 
 // MAIN GAME FUNCTION
 function main() {
+	if (didGameEnd()) {
+		displayGameOver();
+		return;
+	}
+
 	setTimeout(function onTick() {
 		clearCanvas();
 		drawSnake();
