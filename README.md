@@ -63,7 +63,7 @@ It’s a simple yet powerful demonstration of:
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/<your-username>/Snake_Game.git
+   git clone https://github.com/JorgeSoftwareDev/Snake_Game.git
    ```
 
 2. **Open the project folder**
