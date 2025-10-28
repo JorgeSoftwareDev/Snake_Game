@@ -1,106 +1,180 @@
 # 🐍 Snake Game
 
-A classic **Snake Game** recreated in **JavaScript**, **HTML5 Canvas**, and **CSS**, designed to demonstrate clean, modular code, responsive rendering, and algorithmic logic.  
-Built and maintained by **Jorge Alvarado** as part of ongoing full-stack development and software engineering practice.
+An interactive **JavaScript Snake Game** built from scratch using **HTML5 Canvas**, **CSS3
+animations**, and **modular JavaScript**.  
+Designed to demonstrate strong front-end engineering, DOM manipulation, and state-driven UI
+transitions — from landing page animation to in-game rendering.
 
 ---
 
-## 🎮 Overview
+## 🎮 Live Demo
 
-The **Snake Game** challenges players to navigate a growing snake around the grid, eating food while avoiding collisions with walls or itself.  
-It’s a simple yet powerful demonstration of:
+▶️ **Play Online:** 
+[Live Demo on netlify](https://jasnakegame.netlify.app/)
 
-- Real-time rendering with the **HTML5 Canvas API**
-- Core programming logic and algorithmic design
-- State management, event handling, and input control
-- Scalable and maintainable front-end code structure
+🖼️ **Preview Screenshot:**  
+![Snake Game Screenshot](./Snakegame.gif)
 
 ---
 
-## ⚙️ Tech Stack
+## 🧠 Project Overview
 
-| Layer | Technology | Purpose |
-|-------|-------------|----------|
-| Front-End | **JavaScript (ES6+)** | Game logic, movement, collision detection |
-| UI Rendering | **HTML5 Canvas** | Grid drawing and real-time animation |
-| Styling | **CSS3 / Flexbox** | Game layout and interface responsiveness |
-| Version Control | **Git & GitHub** | Code management and version tracking |
+This project re-imagines the classic Snake game with a polished UI and modular codebase.  
+Users start on a custom landing page that transitions into an arcade-style interface using visual
+effects like flashing, shaking, and fade-outs handled by `page.js`.
 
----
-
-## 🚀 Features
-
-✅ **Dynamic Gameplay** – Speed increases as the snake grows.  
-✅ **Responsive Design** – Scales across desktop and mobile browsers.  
-✅ **Score Tracking** – Records current and high scores in-session.  
-✅ **Game Loop Optimization** – Smooth frame updates using `requestAnimationFrame()`.  
-✅ **Modular Code Structure** – Separate logic for rendering, movement, and state.  
-✅ **Expandable Architecture** – Ready for new features like AI-powered snake, multiplayer mode, or ServiceNow integration.
+Once inside the arcade screen, the core gameplay — written entirely in vanilla JavaScript — takes
+over, using canvas rendering for fluid real-time movement and collision detection.
 
 ---
 
-## 🧠 How It Works
+## ⚙️ Features
 
-1. The player uses **arrow keys** (↑ ↓ ← →) to control the snake.  
-2. Each movement updates the grid and checks for:
-   - Collision with food → grows the snake and increases score.  
-   - Collision with walls or itself → triggers game over.  
-3. The **game loop** continuously redraws frames at a dynamic speed.  
+### 🎨 UI / UX
 
----
+- Interactive **landing screen** with:
+  - Flash + shake intro sequence
+  - Smooth fade transition into the game canvas
+- **Arcade-style layout** with score and level indicators
+- **Keyboard controls** (arrow keys) for movement
+- Modular design separating:
+  - `page.js` → UI transitions and injection
+  - `game.js` → Core gameplay logic
 
-## 🧩 Future Enhancements
+### 🧩 Gameplay
 
-- [ ] Add **leaderboard system** using Firebase or local storage  
-- [ ] Implement **AI-driven Snake Bot** using Ollama or Hugging Face models  
-- [ ] Integrate a **ServiceNow scoreboard API** for workflow-based tracking  
-- [ ] Add **dark/light mode** and animated transitions with Tailwind CSS  
+- Classic snake growth and movement
+- Randomized food placement with grid alignment
+- Collision detection with walls and self
+- Leveling and score tracking
+- Progressive speed increase per level
+- Game over detection and restart capability
 
----
+### 🧱 Technical Highlights
 
-## 💻 Installation & Usage
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/JorgeSoftwareDev/Snake_Game.git
-   ```
-
-2. **Open the project folder**
-
-   ```bash
-   cd Snake_Game
-   ```
-
-3. **Run the game**
-
-   Simply open `index.html` in your web browser.
+- Written in **plain JavaScript (ES6)** — no external frameworks
+- Uses **HTML5 Canvas API** for rendering
+- **Event-driven state machine** design for game transitions
+- **Reusable UI logic** for DOM manipulation and injection
+- **Custom animations** (flash invert, shake, fade) in pure CSS
 
 ---
 
-## 📸 Preview
+## 🧠 Architecture
 
-*(Add a screenshot or GIF here showing gameplay — `snake_game_preview.gif`)*  
-Example:
+```text
+Snake_Game/
+│
+├── index.html          # Landing structure & script includes
+├── style.css           # Layout, animations, and visual styling
+├── page.js             # Handles page transitions & game injection
+├── game.js             # Core snake logic and rendering loop
+├── arcback4.png        # Arcade background
+└── README.md           # Project documentation
+```
 
-![Snake Game Preview](./assets/snake_game_preview.gif)
+### Script Responsibilities
+
+| Script         | Role                                                           |
+| -------------- | -------------------------------------------------------------- |
+| **index.html** | Entry point with initial UI and script hooks                   |
+| **page.js**    | Controls UI transition, DOM injection, and animation sequences |
+| **game.js**    | Implements game logic, rendering, movement, and scoring        |
+| **style.css**  | Manages layout, animations, and visual transitions             |
+
+---
+
+## 💻 How to Run Locally
+
+```bash
+# Clone the repository
+git clone https://github.com/JorgeSoftwareDev/Snake_Game.git
+cd Snake_Game
+
+# Open the project
+# Simply open index.html in your preferred browser
+```
+
+> ⚠️ No dependencies or build tools required.  
+> Works on any modern browser that supports HTML5 Canvas.
+
+---
+
+## 🧩 Core Code Example
+
+Example of movement logic from `game.js`:
+
+```js
+function advanceSnake() {
+  const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+  snake.unshift(head);
+
+  const didEatFood = snake[0].x === foodX && snake[0].y === foodY;
+
+  if (didEatFood) {
+    createFood();
+    updateScore();
+  } else {
+    snake.pop();
+  }
+}
+```
+
+---
+
+## 🧭 Roadmap
+
+Planned Enhancements:
+
+- [ ] Add **Start / Restart buttons** inside the arcade view
+- [ ] Add **sound effects** for movement, eating, and game over
+- [ ] Add **localStorage high score tracking**
+- [ ] Add **touch controls** for mobile play
+- [ ] Integrate **pause / resume functionality**
+
+---
+
+## 🧰 Tech Stack
+
+| Category         | Technologies                                 |
+| ---------------- | -------------------------------------------- |
+| **Languages**    | JavaScript (ES6), HTML5, CSS3                |
+| **Tools**        | VS Code, Git, GitHub                         |
+| **Core APIs**    | Canvas API, DOM API                          |
+| **Design Focus** | Animation, UX transitions, modular structure |
+
+---
+
+## 🧑‍💻 Developer Notes
+
+This project showcases:
+
+- Strong understanding of front-end **state management without frameworks**
+- Use of **modern ES6 syntax** and **clean modular architecture**
+- Skill in **CSS animations and DOM-based transitions**
+- Implementation of **interactive and reactive UI behaviors**
+
+Built and maintained by **Jorge Alvarado**
 
 ---
 
 ## 🧑‍💻 About the Developer
 
 **Jorge Alvarado**  
-Full Stack Developer | IT Professional | AI/Automation Enthusiast  
-> “Transforming ideas into scalable, user-centric applications.”  
+Full Stack Developer | IT Professional | AI/Automation Enthusiast
 
-- 🌐 [GitHub Portfolio](https://github.com/JorgeSoftwareDev)  
-- 💼 [LinkedIn](https://www.linkedin.com/in/jorgesoftwardev/)  
+> “Transforming ideas into scalable, user-centric applications.”
+
+- 🌐 [GitHub Portfolio](https://github.com/JorgeSoftwareDev)
+- 💼 [LinkedIn](https://www.linkedin.com/in/jorgesoftwardev/)
+- 📧 [Email](mailto:jorgesoftwaredev@gmail.com)
 
 ---
 
 ## 🪄 License
 
-This project is licensed under the **MIT License** — feel free to use, modify, and distribute with attribution.
+This project is licensed under the **MIT License** — feel free to use, modify, and distribute with
+attribution.
 
 ---
 
