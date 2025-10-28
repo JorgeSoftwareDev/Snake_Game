@@ -64,13 +64,13 @@ function loadGameScreen() {
 
     root.innerHTML = `
 			<div class="pageContainer">
-				<div id="arcade" class="console">
-					<div class="scoreContainer">
+				<div class="console">
+					<div id="scoreContainer">
 						<h2 class="levelNum">Level: <span id="levelNum">0</span></h2>
 						<h2 class="scoreNum">Score: <span id="scoreNum">0</span></h2>
 					</div>
 
-					<canvas id="gameCanvas" class="gameCanvas" width="500px" height="500px"></canvas>
+					<canvas id="gameCanvas" class="gameCanvas" ></canvas>
 				</div>
 			</div>
 		`;

@@ -39,9 +39,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   width: 90vmin;
   max-width: 600px;
-  height: auto;
+  max-height: 90dvh;
   background: transparent;
 }
 
@@ -58,7 +59,7 @@ body {
   align-content: center;
   border: #000 5px double;
 }
-.scoreContainer {
+#scoreContainer {
   display: flex;
   color: #ffffff;
   background-color: darkblue;
@@ -68,6 +69,8 @@ body {
   justify-content: space-around;
   border: #000 5px dashed;
   margin-bottom: 5px;
+  min-width: 88%;
+  max-width: 90%;
 }
 
 .btn {
@@ -137,9 +140,8 @@ body {
 #gameCanvas {
   display: block;
   z-index: 1;
-  width: 100%; /* Take full width of parent (#arcade) */
-  height: 80vmin; /* Maintain square shape */
-  aspect-ratio: 1 / 1;
+  width: 80vmin;
+  aspect-ratio: 1 / 1 !important;
 }
 
 @keyframes glitch {

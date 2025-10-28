@@ -47,10 +47,21 @@ function initGame() {
   scoreBoard = document.getElementById("scoreNum");
   levelBoard = document.getElementById("levelNum");
   canvas = document.getElementById("gameCanvas");
-  const gamesize = 300;
-  canvas.width = gamesize;
-  canvas.height = gamesize;
   ctx = canvas.getContext("2d");
+
+  // Get the computed CSS variable --game-area-width (e.g., "534.6px")
+  const root = document.documentElement;
+  let widthValue = getComputedStyle(root).getPropertyValue("--game-area-width").trim();
+
+  // Convert "534.6px" → 534.6 (numeric value)
+  let gameSize = parseFloat(widthValue);
+
+  // Fallback if CSS variable is missing or invalid
+  if (isNaN(gameSize)) {
+    gameSize = 400;
+  }
+  canvas.width = gameSize;
+  canvas.height = gameSize;
 
   // Create the game canvas
   ctx.fillStyle = "#8550eb";
@@ -110,8 +121,8 @@ function createFood() {
   let newFoodX, newFoodY;
   let foodIsOnSnake;
   do {
-    foodX = Math.round((Math.random() * (canvas.width - 40)) / 10) * 10 + 10;
-    foodY = Math.round((Math.random() * (canvas.height - 40)) / 10) * 10 + 10;
+    foodX = Math.round((Math.random() * (canvas.width - 30)) / 10) * 10 + 10;
+    foodY = Math.round((Math.random() * (canvas.height - 30)) / 10) * 10 + 10;
     newFoodX = foodX;
     newFoodY = foodY;
     foodIsOnSnake = snake.some((part) => part.x === newFoodX && part.y === newFoodY);
