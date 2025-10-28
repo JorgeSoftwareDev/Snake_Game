@@ -181,8 +181,8 @@ Built and maintained by **Jorge Alvarado**
 
 ## 🧑‍💻 About the Developer
 
-**Jorge Alvarado**  
-Full Stack Developer | IT Professional | AI/Automation Enthusiast
+### Jorge Alvarado  
+**Full Stack Developer | IT Professional | AI/Automation Enthusiast**
 
 > “Transforming ideas into scalable, user-centric applications.”
 
