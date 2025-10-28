@@ -3,14 +3,13 @@
 An interactive **JavaScript Snake Game** built from scratch using **HTML5 Canvas**, **CSS3
 animations**, and **modular JavaScript**.  
 Designed to demonstrate strong front-end engineering, DOM manipulation, and state-driven UI
-transitions — from landing page animation to in-game rendering.
+transitionsgoing from landing page animation to in-game rendering.
 
 ---
 
 ## 🎮 Live Demo
 
-▶️ **Play Online:** 
-[Live Demo on netlify](https://jasnakegame.netlify.app/)
+▶️ **Play Online:** [Live Demo on netlify](https://jasnakegame.netlify.app/)
 
 🖼️ **Preview Screenshot:**  
 ![Snake Game Screenshot](./Snakegame.gif)
@@ -35,9 +34,9 @@ over, using canvas rendering for fluid real-time movement and collision detectio
 - Interactive **landing screen** with:
   - Flash + shake intro sequence
   - Smooth fade transition into the game canvas
-- **Arcade-style layout** with score and level indicators
-- **Keyboard controls** (arrow keys) for movement
-- Modular design separating:
+  - **Arcade-style layout** with score and level indicators
+  - **Keyboard controls** (arrow keys) for movement
+  - Modular design separating:
   - `page.js` → UI transitions and injection
   - `game.js` → Core gameplay logic
 
@@ -50,13 +49,32 @@ over, using canvas rendering for fluid real-time movement and collision detectio
 - Progressive speed increase per level
 - Game over detection and restart capability
 
+---
+
+### 🎮 Game Controls
+
+| Action             | Key                          | Description                                            |
+| :----------------- | :--------------------------- | :----------------------------------------------------- |
+| **Move Up**        | ↑ Arrow                      | Moves the snake upward on the grid                     |
+| **Move Down**      | ↓ Arrow                      | Moves the snake downward on the grid                   |
+| **Move Left**      | ← Arrow                      | Moves the snake left on the grid                       |
+| **Move Right**     | → Arrow                      | Moves the snake right on the grid                      |
+| **Start Game**     | Enter / Click **Start Game** | Begins a new game session                              |
+| **Restart Game**   | R                            | Reloads or restarts the game (optional if implemented) |
+| **Pause / Resume** | P                            | Pauses or resumes gameplay (planned feature)           |
+
+> The snake cannot reverse direction directly into itself.  
+> Input is handled through JavaScript event listeners on the `keydown` event.
+
+---
+
 ### 🧱 Technical Highlights
 
-- Written in **plain JavaScript (ES6)** — no external frameworks
-- Uses **HTML5 Canvas API** for rendering
-- **Event-driven state machine** design for game transitions
-- **Reusable UI logic** for DOM manipulation and injection
-- **Custom animations** (flash invert, shake, fade) in pure CSS
+- Written in **modular JavaScript (ES6)** with all functionality manually coded
+- Uses the **HTML5 Canvas API** for rendering and frame updates
+- Implements an **event-driven architecture** for state management and transitions
+- Includes **reusable UI modules** for DOM manipulation and content injection
+- Utilizes **pure CSS animations** for visual effects such as flashing, shaking, and fading
 
 ---
 
@@ -126,11 +144,14 @@ function advanceSnake() {
 
 Planned Enhancements:
 
-- [ ] Add **Start / Restart buttons** inside the arcade view
-- [ ] Add **sound effects** for movement, eating, and game over
-- [ ] Add **localStorage high score tracking**
-- [ ] Add **touch controls** for mobile play
-- [ ] Integrate **pause / resume functionality**
+- Add **Restart buttons** after game over screen
+- Add **sound effects** for movement, eating, and game over
+- Add **high scoreboard** with local storage
+- Add **touch controls** for mobile play
+- Add **countdown** prior to game start
+- Add **pause / resume functionality** for users to walk away and come back
+- Add **timer** at higher levels
+- Add **enemies** to avoid at higher levels
 
 ---
 
