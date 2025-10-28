@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
-		<title>Snake Game</title>
-	</head>
-	<body>
-		<div class="pageContainer">
-			<div id="arcade">
-				<h1 class="title yellow">Serpent Frenzy</h1>
-				<div class="scoreContainer gray">
-					<h2 class="levelNum">Level: <span id="levelNum">0</span></h2>
-					<h2 class="scoreNum">Score: <span id="scoreNum">0</span></h2>
-				</div>
-
-				<canvas id="gameCanvas" class="gameCanvas" width="500px" height="500px"></canvas>
-			</div>
-		</div>
-		<script src="game.js" async></script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Snake Game</title>
+  </head>
+  <body>
+    <div class="pageContainer" id="landingScreen">
+      <div id="arcade">
+        <h1 class="gameTitle yellow">Serpent Frenzy</h1>
+        <button class="btn start" id="startBtn">
+          <span data-text="Start Game">Start Game</span>
+          <div class="scan-line"></div>
+        </button>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script src="page.js"></script>
+    <script src="game.js"></script>
+  </body>
 </html>
